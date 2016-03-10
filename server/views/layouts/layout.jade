@@ -1,0 +1,17 @@
+doctype html
+html
+    head
+        title Quiz
+        base(href="/")
+        link(rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet" type="text/css" href="lib/toastr/toastr.css")
+        link(rel="stylesheet" type="text/css" href="css/main.css")
+    body(ng-app="app")
+        
+        block main-content
+        
+        include scripts
+        
+        if !!currentUser
+            script.
+                window.bootstrappedUserObject = !{JSON.stringify(currentUser)}

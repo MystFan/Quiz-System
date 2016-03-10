@@ -1,0 +1,6 @@
+div(ng-repeat="question in questions | orderBy: 'createdOn' | limitTo: 10")
+    .row
+        .col-md-3
+            | Date: {{ question.createdOn | date:'MM dd yyyy'}}
+        .col-md-3
+            | Text: {{ question.text }}
