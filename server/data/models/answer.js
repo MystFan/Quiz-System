@@ -1,3 +1,4 @@
+/// <reference path="../../../typings/mongoose/mongoose.d.ts" />
 var mongoose = require('mongoose');
 
 module.exports = {
@@ -17,6 +18,14 @@ module.exports = {
                 return;
             }
             
+            if(!answers.length){
+                var Question = mongoose.model('Question');
+                var answer = new Answer({text: 'Yes', author: 'jhon', isCorrect: false});
+
+                Question.findOneAndUpdate({},{ $push: {"answers": answer}}, function name(err, result) {
+                    console.log(result);
+                });
+            }
         })
     }
 }

@@ -23,6 +23,6 @@ module.exports = function (config) {
     });
 
     User.init();
+    Answer.init();    
     Question.init();
-    Answer.init();
 }
