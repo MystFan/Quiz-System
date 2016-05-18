@@ -1,0 +1,67 @@
+.container(ng-controller="QuestionCreateController")
+     div(class="row")
+          div(class="col-lg-10")
+               form(class="form-horizontal", name="questionCreateForm")
+                    div(class="well bs-component")
+                        div(id="question-container")
+                            fieldset
+                                legend Question
+                                div(class="form-group")
+                                    label(for="inputQuestionText" class="col-lg-2 control-label")  Text
+                                    div(class="col-lg-10")
+                                        p
+                                            input(class="form-control" id="inputQuestionText" ng-model="question.text" name="questionText" ng-minlength="CONSTANTS.QUESTION_TEXT_MINLENGTH" required placeholder="Question" type="text")
+                                            span(ng-show="questionCreateForm.questionText.$error.required && questionCreateForm.$dirty" class="text-danger")
+                                                | This is a required field
+                                            span(ng-show="questionCreateForm.questionText.$error.minlength && questionCreateForm.$dirty" class="text-danger")
+                                                | Question text must be at least {{ CONSTANTS.QUESTION_TEXT_MINLENGTH }} characters long
+                                            ul(id="answers-container")
+                                                li
+                                                    p
+                                                        input(type="radio" name="index" ng-model="question.index" value="0")
+                                                        label(class="answer-label")  Mark answer as correct
+                                                        input(class="form-control" id="inputAnswer-1" ng-model="question.answers[0].text" name="answer1" ng-minlength="CONSTANTS.ANSWER_TEXT_MINLENGTH" required placeholder="Answer" type="text")
+                                                        span(ng-show="questionCreateForm.answer1.$error.required && questionCreateForm.$dirty" class="text-danger")
+                                                            | This is a required field
+                                                        span(ng-show="questionCreateForm.answer1.$error.minlength && questionCreateForm.$dirty" class="text-danger")
+                                                            | Answer text must be at least {{ CONSTANTS.ANSWER_TEXT_MINLENGTH }} characters long!  
+                                                li
+                                                    p
+                                                        input(type="radio" name="index" ng-model="question.index" value="1")
+                                                        label(class="answer-label")  Mark answer as correct
+                                                        input(class="form-control" id="inputAnswer-2" ng-model="question.answers[1].text" name="answer2" ng-minlength="CONSTANTS.ANSWER_TEXT_MINLENGTH" required placeholder="Answer" type="text")
+                                                        span(ng-show="questionCreateForm.answer2.$error.required && questionCreateForm.$dirty" class="text-danger")
+                                                            | This is a required field
+                                                        span(ng-show="questionCreateForm.answer2.$error.minlength && questionCreateForm.$dirty" class="text-danger")
+                                                            | Answer text must be at least {{ CONSTANTS.ANSWER_TEXT_MINLENGTH }} characters long! 
+                                                li
+                                                    p
+                                                        input(type="radio" name="index" ng-model="question.index" value="2")
+                                                        label(class="answer-label")  Mark answer as correct
+                                                        input(class="form-control" id="inputAnswer-3" ng-model="question.answers[2].text" name="answer3" ng-minlength="CONSTANTS.ANSWER_TEXT_MINLENGTH" required placeholder="Answer" type="text")
+                                                        span(ng-show="questionCreateForm.answer3.$error.required && questionCreateForm.$dirty" class="text-danger")
+                                                            | This is a required field
+                                                        span(ng-show="questionCreateForm.answer3.$error.minlength && questionCreateForm.$dirty" class="text-danger")
+                                                            | Answer text must be at least {{ CONSTANTS.ANSWER_TEXT_MINLENGTH }} characters long! 
+                                                 li
+                                                    p
+                                                        input(type="radio" name="index" ng-model="question.index" value="3")
+                                                        label(class="answer-label")  Mark answer as correct
+                                                        input(class="form-control" id="inputAnswer-4" ng-model="question.answers[3].text" name="answer4" ng-minlength="CONSTANTS.ANSWER_TEXT_MINLENGTH" required placeholder="Answer" type="text")
+                                                        span(ng-show="questionCreateForm.answer4.$error.required && questionCreateForm.$dirty" class="text-danger")
+                                                            | This is a required field
+                                                        span(ng-show="questionCreateForm.answer4.$error.minlength && questionCreateForm.$dirty" class="text-danger")
+                                                            | Answer text must be at least {{ CONSTANTS.ANSWER_TEXT_MINLENGTH }} characters long!                                     
+                                    
+                        div(class="form-group")
+                                label(for="categories" class="col-lg-2 control-label")  Category
+                                div(class="col-lg-10")
+                                    select(class="form-control" id="categories-list" name="category" required ng-model="question.category")
+                                        option(value="")  Select Category
+                                        option(ng-repeat="category in categories" value="{{ category }}")  {{ category }}
+                                    span(ng-show="questionCreateForm.category.$error.required && questionCreateForm.$dirty" class="text-danger")
+                                        | This is a required field                        
+                        div(class="form-group")
+                                div(class="col-lg-10 col-lg-offset-2")
+                                    button(type="reset" class="btn btn-default")  Cancel
+                                    button(type="submit" class="btn btn-primary" ng-disabled="questionCreateForm.$invalid" ng-click="createQuestion(question, questionCreateForm)")  Submit                             

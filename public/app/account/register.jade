@@ -1,0 +1,75 @@
+.container
+    .row
+        .col-md-8
+            form.form-horizontal(method='post' name="registerForm")
+                fieldset
+                    legend Register
+                    .form-group
+                        label.col-md-4.control-label(for='username') Username
+                        .col-md-8
+                            input#username.form-control(name='username' placeholder='Username' type='text' ng-maxlength="CONSTANTS.USERNAME_MAX_LENGTH" ng-minlength="CONSTANTS.USERNAME_MIN_LENGTH" required ng-model="user.username")
+                            span(ng-show="registerForm.username.$error.required && registerForm.$dirty" class="text-danger") 
+                                | This is a required field
+                                br    
+                            span(ng-show="registerForm.username.$error.minlength && registerForm.$dirty" class="text-danger") 
+                                | Username must be between {{ CONSTANTS.USERNAME_MIN_LENGTH }}  and {{ CONSTANTS.USERNAME_MAX_LENGTH }} characters long!
+                                br 
+                            span(ng-show="registerForm.username.$error.maxlength && registerForm.$dirty" class="text-danger") 
+                                | Username must be between {{ CONSTANTS.USERNAME_MIN_LENGTH }}  and {{ CONSTANTS.USERNAME_MAX_LENGTH }} characters long!
+                                br 
+                    .form-group
+                        label.col-md-4.control-label(for='password') Password
+                        .col-md-8
+                            input#password.form-control(name='password' placeholder='Password' type='password' ng-maxlength="CONSTANTS.PASSWORD_MAX_LENGTH" ng-minlength="CONSTANTS.PASSWORD_MIN_LENGTH" required ng-model="user.password")
+                            span(ng-show="registerForm.password.$error.required && registerForm.$dirty" class="text-danger") 
+                                | This is a required field
+                                br 
+                            span(ng-show="registerForm.password.$error.minlength && registerForm.$dirty" class="text-danger") 
+                                | Password must be between {{ CONSTANTS.PASSWORD_MIN_LENGTH }}  and {{ CONSTANTS.PASSWORD_MAX_LENGTH }} characters long!
+                                br 
+                            span(ng-show="registerForm.password.$error.maxlength && registerForm.$dirty" class="text-danger") 
+                                | Password must be between {{ CONSTANTS.PASSWORD_MIN_LENGTH }}  and {{ CONSTANTS.PASSWORD_MAX_LENGTH }} characters long!
+                                br
+                    .form-group
+                        label.col-md-4.control-label(for='confirmPassword') Confirm Password
+                        .col-md-8
+                            input#confirmPassword.form-control(name='confirmPassword' placeholder='Confirm Password' type='password' ng-maxlength="CONSTANTS.PASSWORD_MAX_LENGTH" ng-minlength="CONSTANTS.PASSWORD_MIN_LENGTH" required ng-model="user.confirmPassword")                          
+                            span(ng-show="registerForm.confirmPassword.$error.required && registerForm.$dirty" class="text-danger") 
+                                | This is a required field
+                                br 
+                            span(ng-show="registerForm.confirmPassword.$error.minlength && registerForm.$dirty" class="text-danger")
+                                |  Confirm Password must be between {{ CONSTANTS.PASSWORD_MIN_LENGTH }}  and {{ CONSTANTS.PASSWORD_MAX_LENGTH }} characters long!
+                                br 
+                            span(ng-show="registerForm.confirmPassword.$error.maxlength && registerForm.$dirty" class="text-danger")    
+                                |  Confirm Password must be between {{ CONSTANTS.PASSWORD_MIN_LENGTH }}  and {{ CONSTANTS.PASSWORD_MAX_LENGTH }} characters long!
+                                br     
+                    .form-group
+                        label.col-md-4.control-label(for='firstName') First name
+                        .col-md-8
+                            input#firstName.form-control(name='firstName' placeholder='First Name' type='text' ng-maxlength="CONSTANTS.FIRST_NAME_MAX_LENGTH" ng-minlength="CONSTANTS.FIRST_NAME_MIN_LENGTH" required ng-model="user.firstName")                        
+                            span(ng-show="registerForm.firstName.$error.required && registerForm.$dirty" class="text-danger") 
+                                | This is a required field
+                                br 
+                            span(ng-show="registerForm.firstName.$error.minlength && registerForm.$dirty" class="text-danger")
+                                |  First name must be between {{ CONSTANTS.FIRST_NAME_MIN_LENGTH }}  and {{ CONSTANTS.FIRST_NAME_MAX_LENGTH }} characters long!
+                                br 
+                            span(ng-show="registerForm.firstName.$error.maxlength && registerForm.$dirty" class="text-danger")
+                                |  First name must be between {{ CONSTANTS.FIRST_NAME_MIN_LENGTH }}  and {{ CONSTANTS.FIRST_NAME_MAX_LENGTH }} characters long!
+                                br     
+                    .form-group
+                        label.col-md-4.control-label(for='lastName') Last name
+                        .col-md-8
+                            input#lastName.form-control(name='lastName' placeholder='Last Name' type='text' ng-maxlength="CONSTANTS.LAST_NAME_MAX_LENGTH"  ng-minlength="CONSTANTS.LAST_NAME_MIN_LENGTH" required  ng-model="user.lastName")                      
+                            span(ng-show="registerForm.lastName.$error.required && registerForm.$dirty" class="text-danger") 
+                                | This is a required field
+                                br 
+                            span(ng-show="registerForm.lastName.$error.minlength && registerForm.$dirty" class="text-danger")
+                                |  Last name must be between {{ CONSTANTS.LAST_NAME_MIN_LENGTH }}  and {{ CONSTANTS.LAST_NAME_MAX_LENGTH }} characters long!
+                                br
+                            span(ng-show="registerForm.lastName.$error.maxlength && registerForm.$dirty" class="text-danger")
+                                |  Last name must be between {{ CONSTANTS.LAST_NAME_MIN_LENGTH }}  and {{ CONSTANTS.LAST_NAME_MAX_LENGTH }} characters long!
+                                br                             
+                .form-group
+                    .col-md-3(class="pull-right")
+                        button(type="reset" class="btn btn-default")  Cancel
+                        button(type="submit" class="btn btn-primary" ng-disabled="registerForm.$invalid" ng-click="register(user, registerForm)")  Submit                         

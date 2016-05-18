@@ -3,10 +3,12 @@ html
     head
         title Quiz
         base(href="/")
-        link(rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap-theme.min.css")
         link(rel="stylesheet" type="text/css" href="lib/toastr/toastr.css")
         link(rel="stylesheet" type="text/css" href="css/main.css")
-    body(ng-app="app")
+        script(src="http://code.responsivevoice.org/responsivevoice.js")
+    body(ng-app="app" ng-controller="MainController")
         
         block main-content
         

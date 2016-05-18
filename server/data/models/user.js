@@ -38,7 +38,7 @@ module.exports = {
 
                 salt = encryption.generateSalt();
                 hashPassword = encryption.generateHashedPassword(salt, secrets.adminPassword);
-                User.create({ username: secrets.adminUsername, firstName: 'todor', lastName: 'dimitrov', salt: salt, hashPassword: hashPassword, roles: ['admin'] });
+                User.create({ username: secrets.adminUsername, firstName: 'todor', lastName: 'dimitrov', salt: salt, hashPassword: hashPassword, roles: ['user', 'admin'] });
                 salt = encryption.generateSalt();
                 hashPassword = encryption.generateHashedPassword(salt, '654321');
                 User.create({ username: 'jhon', firstName: 'jhon', lastName: 'doe', salt: salt, hashPassword: hashPassword, roles: ['user'] });

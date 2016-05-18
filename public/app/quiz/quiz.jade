@@ -1,0 +1,19 @@
+.container
+    h1(class="text-center") Quiz
+    div(class="alert alert-success" ng-show="quizFinish")
+        strong 
+            | Your score! 
+        | {{ score }} points.
+    div(class="row text-center" id="button-start-container" ng-hide="currentQuestion")
+        button(class="btn btn-lg btn-success" ng-click="nextQuestion()")
+            | Start
+    div(class="panel panel-success" ng-show="currentQuestion")
+        div(class="panel-heading") 
+            | {{ currentQuestion.text }}
+        div(class="panel-body") 
+            ul
+                li(ng-repeat="answer in currentQuestion.answers")
+                    input(type="radio" name="answer-mark" ng-click="addAnswerMark($index)")
+                    |  {{ answer.text }}
+            button(class="btn btn-success" ng-disabled="!hasAnswer" ng-click="nextQuestion()") Next
+    

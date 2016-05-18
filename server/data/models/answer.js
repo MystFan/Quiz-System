@@ -11,21 +11,5 @@ module.exports = {
         });
 
         var Answer = mongoose.model('Answer', answerSchema);
-        
-        Answer.find({}).exec(function(err, answers){
-            if (err) {
-                console.log("Cannot find answers: " + err);
-                return;
-            }
-            
-            if(!answers.length){
-                var Question = mongoose.model('Question');
-                var answer = new Answer({text: 'Yes', author: 'jhon', isCorrect: false});
-
-                Question.findOneAndUpdate({},{ $push: {"answers": answer}}, function name(err, result) {
-                    console.log(result);
-                });
-            }
-        })
     }
 }

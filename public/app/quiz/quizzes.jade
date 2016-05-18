@@ -1,0 +1,29 @@
+.container
+    ul
+        li(ng-repeat="quiz in quizzes" class="quiz-container")
+           h4 
+                span {{ $index + 1 + '.' }} 
+                span(class="glyphicon glyphicon-film" ng-show="quiz.category == 'Movies'")
+                span(class="glyphicon glyphicon-education" ng-show="quiz.category == 'Other'")
+                span(class="glyphicon glyphicon-flag" ng-show="quiz.category == 'Sport'")
+                |   {{ quiz.category }}
+           p 
+              span(class="glyphicon glyphicon-pencil") 
+              |   questions: {{ quiz.questions.length }}   
+              a(href="/quiz/{{quiz._id}}" class="btn btn-success pull-right")
+                | Start quiz  
+    nav(class="text-center")
+        ul(class="pagination")
+            li(ng-show="currentPage + 1 > 1")
+                a(class="btn" ng-click="onQuizzesRequested(currentPage - 1)" aria-label="Previous")
+                    span(aria-hidden="true")
+                        | &laquo;
+            li(ng-repeat="page in pages track by $index")
+                a(class="btn" ng-show="currentPage !== (page - 1)" ng-click="onQuizzesRequested(page - 1)")
+                    | {{ page }}
+                a(class="btn active" ng-show="currentPage === (page - 1)" ng-click="onQuizzesRequested(page - 1)")
+                    | {{ page }}
+            li(ng-show="currentPage + 1 < totalPages")
+                a(class="btn" ng-click="onQuizzesRequested(currentPage + 1)" aria-label="Next")
+                    span(aria-hidden="true")
+                        | &raquo;        

@@ -1,0 +1,70 @@
+.container(style="overflow: auto; height: 100%;")
+    .row(class="text-center")
+        div(class="col-lg-3")
+            label(for="categories-list" class="col-lg-2 control-label")  Category        
+            select(class="form-control" id="categories-list" name="category" ng-model="category" ng-change="onCategoryChanged(category)")
+                option(value="")  Select Category
+                option(ng-repeat="category in categories" value="{{ category }}")  {{ category }}
+        div(class="col-lg-3")
+            p
+                label(for="button-clear" class="col-lg-2 control-label") 
+                    | Remove quiz questions
+            button(class="btn btn-success" id="button-clear" ng-click="clearQuiz()") 
+                | Clear       
+    br
+    div(class="panel panel-success")
+        div(class="panel-heading")
+            h3(class="panel-title")
+                | Create Quiz
+        div(class="panel-body")
+            ul(id="quiz-questions-list" ng-repeat="item in quizQuestions")
+                li(class="text-info")
+                    p
+                        h4
+                            | {{ $index + 1 }}. {{ item.text }}  
+                            button(class="btn btn-xs" ng-click="removeQuestion(item)")
+                                span(class="glyphicon glyphicon-minus")    
+            .row
+                form(class="form-vertical", name="quizCreateForm")
+                    div(class="form-group")
+                        label(for="quiz-categories-list" class="col-lg-1 control-label")  Category                            
+                        div(class="col-lg-3")
+                            select(class="form-control" id="quiz-categories-list" name="category" required ng-model="quiz.category")
+                                option(value="")  Select Category
+                                option(ng-repeat="category in categories" value="{{ category }}")  {{ category }}
+                            span(ng-show="quizCreateForm.category.$error.required && quizCreateForm.$dirty" class="text-danger")
+                                | This is a required field
+                    div(class="form-group")            
+                        div(class="col-lg-3")   
+                            button(type="reset" class="btn btn-default")  Cancel
+                            button(type="submit" class="btn btn-primary" ng-disabled="quizCreateForm.$invalid" ng-click="createQuiz(quiz, quizCreateForm)")  Submit      
+    .row
+        div(class="col-md-6" ng-repeat="question in questions | startFrom: currentPage * pageSize | limitTo: pageSize")
+            div(ng-show="question" class="panel panel-success")
+                div(class="panel-heading")
+                    h3(class="panel-title")
+                        | {{ question.text }}
+                div(class="panel-body")     
+                    div(ng-repeat="answer in question.answers")
+                            span(ng-show="answer.isCorrect" class="btn glyphicon glyphicon-ok" aria-hidden="true")
+                            span(ng-show="!answer.isCorrect" class="btn glyphicon glyphicon-remove" aria-hidden="true")
+                            | {{ answer.text }}
+                div(class="panel-footer")
+                    button(class="btn btn-success add-question-button" ng-click="addQuizQuestion(question)")
+                        | Add
+                    button(class="btn btn-danger add-question-button" ng-click="deleteQuestion(question)")
+                        | Delete
+                    div(class="pull-right")
+                        strong
+                            | {{ question.category }}
+    .row(class="text-center")
+        button(ng-disabled="currentPage == 0" ng-click="currentPage = currentPage - 1" class="btn btn-success")
+            | Previous
+        span(class="btn")   
+            | {{ currentPage + 1 }}
+        span
+            | \
+        span(class="btn")
+            | {{ numberOfPages() }}    
+        button(ng-disabled="currentPage >= questions.length/pageSize - 1" ng-click="currentPage = currentPage + 1" class="btn btn-success")
+            | Next

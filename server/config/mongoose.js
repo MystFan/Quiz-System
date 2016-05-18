@@ -2,7 +2,9 @@ var mongoose = require('mongoose'),
     encryption = require('../utilities/encryption'),
     User = require('../data/models/user'),
     Question = require('../data/models/question'),
-    Answer = require('../data/models/answer');
+    Answer = require('../data/models/answer'),
+    Category = require('../data/models/category'),
+    Quiz = require('../data/models/quiz');
 
 module.exports = function (config) {
     mongoose.connect(config.db);
@@ -25,4 +27,6 @@ module.exports = function (config) {
     User.init();
     Answer.init();    
     Question.init();
+    Category.init();
+    Quiz.init();
 }
